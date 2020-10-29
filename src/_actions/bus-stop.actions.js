@@ -26,7 +26,7 @@ function moreDetails(id) {
     return dispatch => {
         dispatch(request(id));
 
-        return busStopService.moreDetails(id)
+        busStopService.moreDetails(id)
             .then(
                 busStop => dispatch(success(busStop)),
                 error => dispatch(failure(id, error.toString()))

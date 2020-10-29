@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { busStopActions } from '../_actions';
+import Collapsible from 'react-collapsible';
+import {Details} from "./Details";
 
 class HomePage extends React.Component {
 
@@ -11,16 +13,8 @@ class HomePage extends React.Component {
     }
 
     handleShowHideBusStop(busStop) {
-        const doShowDetails = (details) => {
-            // code here
-        };
-
-        if (busStop.hasOwnProperty('more_details')) {
-            doShowDetails(busStop.more_details);
-        } else {
-            this.props.getBusStopMoreDetails(busStop.id).then(r => {
-                doShowDetails(r.busStop.data[0]);
-            });
+        if (!busStop.hasOwnProperty('more_details')) {
+            this.props.getBusStopMoreDetails(busStop.id);
         }
     }
 
@@ -35,7 +29,6 @@ class HomePage extends React.Component {
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Address</th>
-                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         {busStops.items &&
@@ -44,9 +37,12 @@ class HomePage extends React.Component {
                                 return (
                                     <tr key={busStop.id}>
                                         <th scope="row">{busStop.id}</th>
-                                        <td>{busStop.address}</td>
                                         <td>
-                                            <button onClick={() => this.handleShowHideBusStop(busStop)}>Show</button>
+                                            <Collapsible
+                                                trigger={busStop.address}
+                                                onTriggerOpening={() => this.handleShowHideBusStop(busStop)}>
+                                                <Details busStop={busStop} key={busStop.id} />
+                                            </Collapsible>
                                         </td>
                                     </tr>
                                 );
