@@ -8,22 +8,30 @@ class Details extends React.Component {
         super(props);
         this.state = {
             updated: false,
-            details: this.props.busStop
+            details: {}
         };
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.busStop.hasOwnProperty('more_details') && !this.state.updated) {
+            console.log(this.props.busStop.more_details);
             this.setState({
                 updated: true,
-                details: this.props.busStop
+                details: this.props.busStop.more_details
             });
         }
     }
 
     render() {
+        let {updated, details} = this.state;
+        if (updated) {
+            return (
+                <p>DATA</p>
+            );
+        }
+
         return (
-            <p>TEST</p>
+            <small>Loading...</small>
         );
     }
 }

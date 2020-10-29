@@ -19,11 +19,11 @@ export function busStops(state = {}, action) {
         ...state
       };
     case busStopConstants.MORE_DETAILS_SUCCESS:
-      const moreDetails = action.busStop.data[0];
+      const moreDetails = action.busStop.data;
       return {
         ...state,
         items: state.items.map(busStop =>
-            busStop.id === moreDetails.bus_stop_id
+            moreDetails.length > 0 && busStop.id === moreDetails[0].bus_stop_id
                 ? { ...busStop, more_details: moreDetails }
                 : busStop
         )
