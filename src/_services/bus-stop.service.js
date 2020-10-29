@@ -2,7 +2,8 @@ import config from 'config';
 import {authHeader} from "../_helpers";
 
 export const busStopService = {
-    getAll
+    getAll,
+    moreDetails
 };
 
 function getAll() {
@@ -12,6 +13,15 @@ function getAll() {
     };
 
     return fetch(`${config.apiUrl}/bus-stops`, requestOptions).then(handleResponse);
+}
+
+function moreDetails(id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch(`${config.apiUrl}/bus-stops/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

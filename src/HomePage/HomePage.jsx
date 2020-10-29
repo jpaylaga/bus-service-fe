@@ -5,8 +5,23 @@ import { connect } from 'react-redux';
 import { busStopActions } from '../_actions';
 
 class HomePage extends React.Component {
+
     componentDidMount() {
         this.props.getBusStops();
+    }
+
+    handleShowHideBusStop(busStop) {
+        const doShowDetails = (details) => {
+            // code here
+        };
+
+        if (busStop.hasOwnProperty('more_details')) {
+            doShowDetails(busStop.more_details);
+        } else {
+            this.props.getBusStopMoreDetails(busStop.id).then(r => {
+                doShowDetails(r.busStop.data[0]);
+            });
+        }
     }
 
     render() {
@@ -31,7 +46,7 @@ class HomePage extends React.Component {
                                         <th scope="row">{busStop.id}</th>
                                         <td>{busStop.address}</td>
                                         <td>
-                                            <button>Show</button>
+                                            <button onClick={() => this.handleShowHideBusStop(busStop)}>Show</button>
                                         </td>
                                     </tr>
                                 );
@@ -53,6 +68,7 @@ function mapState(state) {
 
 const actionCreators = {
     getBusStops: busStopActions.getAll,
+    getBusStopMoreDetails: busStopActions.moreDetails
 }
 
 const connectedHomePage = connect(mapState, actionCreators)(HomePage);

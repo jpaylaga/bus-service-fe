@@ -14,6 +14,24 @@ export function busStops(state = {}, action) {
       return {
         error: action.error
       };
+    case busStopConstants.MORE_DETAILS_REQUEST:
+      return {
+        ...state
+      };
+    case busStopConstants.MORE_DETAILS_SUCCESS:
+      const moreDetails = action.busStop.data[0];
+      return {
+        ...state,
+        items: state.items.map(busStop =>
+            busStop.id === moreDetails.bus_stop_id
+                ? { ...busStop, more_details: moreDetails }
+                : busStop
+        )
+      };
+    case busStopConstants.MORE_DETAILS_FAILURE:
+      return {
+        ...state
+      };
     default:
       return state
   }
