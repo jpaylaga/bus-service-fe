@@ -1,5 +1,8 @@
-# react-redux-registration-login-example
+# Project Assignment
 
-React + Redux - User Registration and Login Tutorial & Example
+This is the front-end side of the Bus Service test that was given to me.
 
-For documentation and further details go to https://jasonwatmore.com/post/2017/09/16/react-redux-user-registration-and-login-tutorial-example
+Please note that this repository is heavily inspired by this repository in order to save time:
+
+https://github.com/cornflourblue/react-redux-registration-login-example
+
