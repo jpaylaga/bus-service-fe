@@ -29,7 +29,8 @@ module.exports = {
             apiUrl: dotenv.parsed.APP_API_URL,
             client_id: dotenv.parsed.APP_CLIENT_ID,
             client_secret: dotenv.parsed.APP_CLIENT_SECRET,
-            grant_type: dotenv.parsed.APP_GRANT_TYPE
+            grant_type: dotenv.parsed.APP_GRANT_TYPE,
+            google_maps_api_key: dotenv.parsed.GOOGLE_MAPS_API_KEY,
         })
     }
 }
