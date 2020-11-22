@@ -52,7 +52,7 @@ class Details extends React.Component {
         }
 
         return (
-            <small>Loading...</small>
+            <small>No schedules available</small>
         );
     }
 }
