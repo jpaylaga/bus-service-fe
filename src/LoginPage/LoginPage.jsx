@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { userActions } from '../_actions';
+import config from 'config';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -19,6 +20,13 @@ class LoginPage extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        if (config.grant_type === 'client_credentials') {
+            this.setState({ submitted: true });
+            this.props.loginMachineToMachine();
+        }
     }
 
     handleChange(e) {
@@ -76,7 +84,8 @@ function mapState(state) {
 
 const actionCreators = {
     login: userActions.login,
-    logout: userActions.logout
+    logout: userActions.logout,
+    loginMachineToMachine: userActions.loginMachineToMachine,
 };
 
 const connectedLoginPage = connect(mapState, actionCreators)(LoginPage);

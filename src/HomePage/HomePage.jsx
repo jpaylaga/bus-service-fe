@@ -6,6 +6,8 @@ import { busStopActions } from '../_actions';
 import Collapsible from 'react-collapsible';
 import {Details} from "./Details";
 
+import config from 'config';
+
 class HomePage extends React.Component {
 
     componentDidMount() {
@@ -51,7 +53,10 @@ class HomePage extends React.Component {
                         }
                     </table>
                 </div>
-                <p><Link to="/login">Logout</Link></p>
+                {config.grant_type === 'password' &&
+                    <p><Link to="/login">Logout</Link></p>
+                }
+                
             </div>
         );
     }

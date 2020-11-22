@@ -12,7 +12,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/bus-stops`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}/bus-stops?lat=1.364313&long=103.991305&radius=4000`, requestOptions).then(handleResponse);
 }
 
 function moreDetails(id) {

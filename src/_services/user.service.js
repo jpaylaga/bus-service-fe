@@ -8,7 +8,8 @@ export const userService = {
     getAll,
     getById,
     update,
-    delete: _delete
+    delete: _delete,
+    loginMachineToMachine
 };
 
 function login(username, password) {
@@ -18,9 +19,31 @@ function login(username, password) {
         body: JSON.stringify({
             client_id: config.client_id,
             client_secret: config.client_secret,
-            grant_type: config.grant_type,
+            grant_type: 'password',
             username,
             password,
+        })
+    };
+
+    return fetch(`${config.apiUrl}/oauth/token`, requestOptions)
+        .then(handleResponse)
+        .then(user => {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('user', JSON.stringify(user));
+
+            return user;
+        });
+}
+
+function loginMachineToMachine()
+{
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            client_id: config.client_id,
+            client_secret: config.client_secret,
+            grant_type: 'client_credentials',
         })
     };
 

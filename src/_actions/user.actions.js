@@ -8,7 +8,8 @@ export const userActions = {
     logout,
     register,
     getAll,
-    delete: _delete
+    delete: _delete,
+    loginMachineToMachine
 };
 
 function login(username, password) {
@@ -16,6 +17,29 @@ function login(username, password) {
         dispatch(request({ username }));
 
         userService.login(username, password)
+            .then(
+                user => { 
+                    dispatch(success(user));
+                    history.push('/');
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
+
+    function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
+    function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+}
+
+function loginMachineToMachine()
+{
+    return dispatch => {
+        dispatch(request());
+
+        userService.loginMachineToMachine()
             .then(
                 user => { 
                     dispatch(success(user));
