@@ -6,18 +6,18 @@ export const busStopActions = {
     moreDetails
 };
 
-function getAll() {
+function getAll(lat, long, radius) {
     return dispatch => {
-        dispatch(request());
+        dispatch(request(lat, long, radius));
 
-        busStopService.getAll()
+        busStopService.getAll(lat, long, radius)
             .then(
                 busStops => dispatch(success(busStops)),
                 error => dispatch(failure(error.toString()))
             );
     };
 
-    function request() { return { type: busStopConstants.GETALL_REQUEST } }
+    function request(lat, long, radius) { return { type: busStopConstants.GETALL_REQUEST, lat, long, radius } }
     function success(busStops) { return { type: busStopConstants.GETALL_SUCCESS, busStops } }
     function failure(error) { return { type: busStopConstants.GETALL_FAILURE, error } }
 }

@@ -11,7 +11,16 @@ import config from 'config';
 class HomePage extends React.Component {
 
     componentDidMount() {
-        this.props.getBusStops();
+        if ("geolocation" in navigator) {
+            if (typeof config.mock_location_lat === 'undefined' || typeof config.mock_location_lng === 'undefined') {
+                let ref = this;
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    ref.props.getBusStops(position.coords.latitude, position.coords.longitude, 4000);
+                });
+            } else {
+                this.props.getBusStops(config.mock_location_lat, config.mock_location_lng, 4000);
+            }
+        }
     }
 
     handleShowHideBusStop(busStop) {

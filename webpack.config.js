@@ -31,6 +31,8 @@ module.exports = {
             client_secret: dotenv.parsed.APP_CLIENT_SECRET,
             grant_type: dotenv.parsed.APP_GRANT_TYPE,
             google_maps_api_key: dotenv.parsed.GOOGLE_MAPS_API_KEY,
+            mock_location_lat: dotenv.parsed.MOCK_LOCATION_LAT,
+            mock_location_lng: dotenv.parsed.MOCK_LOCATION_LNG,
         })
     }
 }

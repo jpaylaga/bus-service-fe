@@ -6,13 +6,13 @@ export const busStopService = {
     moreDetails
 };
 
-function getAll() {
+function getAll(lat, long, radius) {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/bus-stops?lat=1.364313&long=103.991305&radius=4000`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}/bus-stops?lat=${lat}&long=${long}&radius=${radius}`, requestOptions).then(handleResponse);
 }
 
 function moreDetails(id) {

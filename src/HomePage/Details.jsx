@@ -3,7 +3,23 @@ import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 import config from 'config';
 
-const AnyReactComponent = ({ text }) => <div><p><b>{text}</b></p></div>;
+const Marker = ({ color, name, id }) =>
+    <div style={{
+            backgroundColor: color,
+            cursor: 'pointer',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            width: '18px',
+            height: '18px',
+            border: '2px solid #fff',
+            borderRadius: '100%',
+            userSelect: 'none',
+            transform: 'translate(-50%, -50%)',
+            zIndex: '1'
+        }}
+        title={name}
+    />;
 
 const DisplayMap = ({mapProperties, busStop}) =>
     <div style={{ height: '500px', width: '100%' }}>
@@ -11,11 +27,12 @@ const DisplayMap = ({mapProperties, busStop}) =>
             bootstrapURLKeys={{ key: config.google_maps_api_key }}
             defaultCenter={mapProperties.center}
             defaultZoom={mapProperties.zoom}
-            >
-            <AnyReactComponent
+        >
+            <Marker
                 lat={busStop.lat}
                 lng={busStop.long}
-                text={busStop.address}
+                name={busStop.address}
+                color="red"
             />
         </GoogleMapReact>
     </div>;
