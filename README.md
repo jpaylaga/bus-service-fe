@@ -34,7 +34,7 @@ APP_GRANT_TYPE=client_credentials
 
 GOOGLE_MAPS_API_KEY=<key here>
 
-#Optional variables
+#Optional variables - it will override device location
 MOCK_LOCATION_LAT=8.496825705057368
 MOCK_LOCATION_LNG=124.63419448137557
 ```
