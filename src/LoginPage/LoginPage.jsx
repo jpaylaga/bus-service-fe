@@ -26,9 +26,11 @@ class LoginPage extends React.Component {
         console.log('RUN LOGINPAGE');
         console.log(config.grant_type);
         if (config.grant_type === 'client_credentials') {
-            this.setState({ submitted: true });
 
             console.log('INSIDE CONDITION');
+            this.setState({ submitted: true });
+
+            console.log('AFTER SET STATE');
             this.props.loginMachineToMachine();
         }
     }
