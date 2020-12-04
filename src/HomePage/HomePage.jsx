@@ -12,7 +12,8 @@ class HomePage extends React.Component {
 
     componentDidMount() {
         if ("geolocation" in navigator) {
-            if (typeof config.mock_location_lat === 'undefined' || typeof config.mock_location_lng === 'undefined') {
+            if ((typeof config.mock_location_lat === 'undefined' || typeof config.mock_location_lng === 'undefined')
+            || (config.mock_location_lat.length <= 0 || config.mock_location_lng.length <= 0)) {
                 let ref = this;
                 navigator.geolocation.getCurrentPosition(function(position) {
                     ref.props.getBusStops(position.coords.latitude, position.coords.longitude, 4000);
