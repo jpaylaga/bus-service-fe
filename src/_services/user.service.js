@@ -49,6 +49,7 @@ function loginMachineToMachine()
 
     console.log('EXECUTED');
     console.log(requestOptions);
+    console.log(config);
 
     return fetch(`${config.apiUrl}/oauth/token`, requestOptions)
         .then(handleResponse)
