@@ -39,8 +39,6 @@ function loginMachineToMachine()
     return dispatch => {
         dispatch(request());
 
-        console.log('EXECUTED ACTION');
-
         userService.loginMachineToMachine()
             .then(
                 user => { 

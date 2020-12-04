@@ -47,15 +47,9 @@ function loginMachineToMachine()
         })
     };
 
-    console.log('EXECUTED');
-    console.log(requestOptions);
-    console.log(config);
-
     return fetch(`${config.apiUrl}/oauth/token`, requestOptions)
         .then(handleResponse)
         .then(user => {
-
-            console.log('FETCHED');
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(user));
 
