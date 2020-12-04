@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const dotenv = require('dotenv').config();
 
 const configGenerator = () => {
     if (!('error' in dotenv)) {
