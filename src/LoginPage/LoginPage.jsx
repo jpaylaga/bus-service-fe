@@ -23,6 +23,7 @@ class LoginPage extends React.Component {
     }
 
     componentDidMount() {
+        console.log('RUN LOGINPAGE');
         if (config.grant_type === 'client_credentials') {
             this.setState({ submitted: true });
             this.props.loginMachineToMachine();

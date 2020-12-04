@@ -11,6 +11,7 @@ import config from 'config';
 class HomePage extends React.Component {
 
     componentDidMount() {
+        console.log('RUN HOMEPAGE');
         if ("geolocation" in navigator) {
             if (typeof config.mock_location_lat === 'undefined' || typeof config.mock_location_lng === 'undefined') {
                 let ref = this;
