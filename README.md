@@ -41,9 +41,9 @@ MOCK_LOCATION_LNG=124.63419448137557
 
 Start react js application
 
-    npm start
+    npm run dev
 
-You can now access the server at http://localhost:8000
+You can now access the server at http://localhost:8080
 
 **TL;DR command list**
 
@@ -51,7 +51,7 @@ You can now access the server at http://localhost:8000
     cd bus-service-fe
     npm install
     touch .env
-    npm start
+    npm run dev
 
 ## Dependencies
 
